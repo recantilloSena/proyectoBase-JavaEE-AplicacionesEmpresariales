@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZonasEditDlg" widgetVar="ZonasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditZonasTitle}">
+            <h:form id="ZonasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{zonasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditZonasLabel_idZona}" for="idZona" />
+                        <p:inputText id="idZona" value="#{zonasController.selected.idZona}" title="#{bundle.EditZonasTitle_idZona}" required="true" requiredMessage="#{bundle.EditZonasRequiredMessage_idZona}"/>
+                        <p:outputLabel value="#{bundle.EditZonasLabel_nombreZona}" for="nombreZona" />
+                        <p:inputText id="nombreZona" value="#{zonasController.selected.nombreZona}" title="#{bundle.EditZonasTitle_nombreZona}" />
+                        <p:outputLabel value="#{bundle.EditZonasLabel_orden}" for="orden" />
+                        <p:inputText id="orden" value="#{zonasController.selected.orden}" title="#{bundle.EditZonasTitle_orden}" required="true" requiredMessage="#{bundle.EditZonasRequiredMessage_orden}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zonasController.update}" value="#{bundle.Save}" update="display,:ZonasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ZonasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ZonasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

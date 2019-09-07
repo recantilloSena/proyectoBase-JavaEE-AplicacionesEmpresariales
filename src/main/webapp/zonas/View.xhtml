@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZonasViewDlg" widgetVar="ZonasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewZonasTitle}">
+            <h:form id="ZonasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{zonasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewZonasLabel_idZona}"/>
+                        <h:outputText value="#{zonasController.selected.idZona}" title="#{bundle.ViewZonasTitle_idZona}"/>
+                        <h:outputText value="#{bundle.ViewZonasLabel_nombreZona}"/>
+                        <h:outputText value="#{zonasController.selected.nombreZona}" title="#{bundle.ViewZonasTitle_nombreZona}"/>
+                        <h:outputText value="#{bundle.ViewZonasLabel_orden}"/>
+                        <h:outputText value="#{zonasController.selected.orden}" title="#{bundle.ViewZonasTitle_orden}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ZonasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

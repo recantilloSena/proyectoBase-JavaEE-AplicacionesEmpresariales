@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonasEditDlg" widgetVar="PersonasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPersonasTitle}">
+            <h:form id="PersonasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPersonasLabel_idPersona}" for="idPersona" />
+                        <p:inputText id="idPersona" value="#{personasController.selected.idPersona}" title="#{bundle.EditPersonasTitle_idPersona}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_idPersona}"/>
+                        <p:outputLabel value="#{bundle.EditPersonasLabel_apellido1}" for="apellido1" />
+                        <p:inputText id="apellido1" value="#{personasController.selected.apellido1}" title="#{bundle.EditPersonasTitle_apellido1}" />
+                        <p:outputLabel value="#{bundle.EditPersonasLabel_apellido2}" for="apellido2" />
+                        <p:inputText id="apellido2" value="#{personasController.selected.apellido2}" title="#{bundle.EditPersonasTitle_apellido2}" />
+                        <p:outputLabel value="#{bundle.EditPersonasLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{personasController.selected.nombres}" title="#{bundle.EditPersonasTitle_nombres}" />
+                        <p:outputLabel value="#{bundle.EditPersonasLabel_documento}" for="documento" />
+                        <p:inputText id="documento" value="#{personasController.selected.documento}" title="#{bundle.EditPersonasTitle_documento}" />
+                        <p:outputLabel value="#{bundle.EditPersonasLabel_fkZona}" for="fkZona" />
+                        <p:selectOneMenu id="fkZona" value="#{personasController.selected.fkZona}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zonasController.itemsAvailableSelectOne}"
+                                           var="fkZonaItem"
+                                           itemValue="#{fkZonaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personasController.update}" value="#{bundle.Save}" update="display,:PersonasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
