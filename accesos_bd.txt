@@ -1,0 +1,5 @@
+# Datos de Acceso a Base de Datos de Prueba de MySQL
+
+url=      jdbc:mysql://mysqlcrc.c8u8ewupudqn.us-east-1.rds.amazonaws.com:3306/datademo
+username= demo
+password= demoCRC
